@@ -1,0 +1,25 @@
+{
+  "name": "weather-analytics-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nadavedri/Weather-Analytics-Platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nadavedri/Weather-Analytics-Platform/issues"
+  },
+  "homepage": "https://github.com/nadavedri/Weather-Analytics-Platform#readme",
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  }
+}
