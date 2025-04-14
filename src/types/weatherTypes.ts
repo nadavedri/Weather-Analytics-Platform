@@ -4,12 +4,23 @@ type City = {
   longitude: number;
 };
 
- type WeatherData = {
-    cityName: string;
-    temperature: number;
-    windSpeed: number;
-    windDirection: number;
-    timestamp: string;
-  };
+type TransformedWeatherData = {
+  cityName: string;
+  temperature: number;
+  windSpeed: number;
+  windDirection: number;
+  timestamp: Date;
+};
 
-  export type { City, WeatherData };
+type RawWeatherData = {
+  cityName: string;
+  interval: number;
+  is_day: number;
+  temperature: number;
+  time: Date;
+  weathercode: number;
+  winddirection: number;
+  windspeed: number;
+};
+
+export type { City, TransformedWeatherData, RawWeatherData };
