@@ -8,8 +8,7 @@ import weatherRouter from './routes/weather';
 import healthRouter from './routes/health';
 import alertsRouter from './routes/alerts';
 import trendsRouter from './routes/trends';
-
-
+import logger from '../logger';
 
 import { errorHandler } from './middleware/errorHandle';
 
@@ -20,10 +19,12 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use(rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-}));
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+  })
+);
 
 const swaggerDocument = YAML.load('./src/docs/swagger.yaml');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -33,8 +34,6 @@ app.use('/health', healthRouter);
 app.use('/alerts', alertsRouter);
 app.use('/trends', trendsRouter);
 
-
-
 app.get('/', (_req, res) => {
   res.send('Weather API is running');
 });
@@ -42,5 +41,5 @@ app.get('/', (_req, res) => {
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  logger.info(`Server listening on port ${PORT}`);
 });
