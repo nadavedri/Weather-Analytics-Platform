@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: Weather Analytics Platform API
+  version: 1.0.0
+  description: API for querying weather data, alerts, and trends.
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        200:
+          description: Server is up and running
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  uptime:
+                    type: number
+                    example: 12345.67
+
+  /weather:
+    get:
+      summary: Get weather data
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Tel Aviv
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-01T00:00:00Z
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-14T00:00:00Z
+      responses:
+        200:
+          description: List of weather data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      example: Tel Aviv
+                    temperature:
+                      type: number
+                      example: 27.5
+                    wind_speed:
+                      type: number
+                      example: 15.0
+                    wind_direction:
+                      type: number
+                      example: 180
+                    timestamp:
+                      type: string
+                      format: date-time
+                      example: 2025-04-13T12:00:00Z
+
+  /alerts:
+    get:
+      summary: Get weather alerts
+      parameters:
+        - name: city
+          in: query
+          schema:
+            type: string
+            example: Tel Aviv
+        - name: condition
+          in: query
+          schema:
+            type: string
+            example: high_temperature
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-01T00:00:00Z
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-14T00:00:00Z
+      responses:
+        200:
+          description: List of filtered alerts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      example: Tel Aviv
+                    condition:
+                      type: string
+                      example: high_temperature
+                    value:
+                      type: number
+                      example: 37.2
+                    timestamp:
+                      type: string
+                      format: date-time
+                      example: 2025-04-13T12:00:00Z
+
+  /trends:
+    get:
+      summary: Get weather trends
+      parameters:
+        - name: metric
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [temperature, wind_speed, wind_direction]
+            example: temperature
+        - name: cities
+          in: query
+          required: true
+          schema:
+            type: string
+            example: Tel Aviv,New York
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-01T00:00:00Z
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+            example: 2025-04-14T00:00:00Z
+        - name: aggregate
+          in: query
+          schema:
+            type: string
+            enum: [avg, min, max]
+            example: avg
+      responses:
+        200:
+          description: Weather trends across cities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    city:
+                      type: string
+                      example: Tel Aviv
+                    value:
+                      type: number
+                      example: 25.3
