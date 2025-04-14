@@ -18,13 +18,14 @@ services:
     build: .
     container_name: weather-etl
     environment:
-      DB_USER: weather_user
-      DB_PASSWORD: weather_pass
-      DB_NAME: weather_db
-      DB_HOST: postgres
-      DB_PORT: 5432
+      POSTGRES_USER: weather_user
+      POSTGRES_PASSWORD: weather_pass
+      POSTGRES_DB: weather_db
+      POSTGRES_HOST: postgres
     depends_on:
       - postgres
+    ports:
+      - '8080:8080' 
 
 volumes:
   pgdata:
