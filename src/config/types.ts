@@ -1,10 +1,15 @@
- export interface AppConfig {
-    environment: string;
-    openMetro : OpenMetro;
-  }
+export interface AppConfig {
+  environment: string;
+  openMetro: OpenMetro;
+  axiosData: AxiosData;
+}
 
-  export interface OpenMetro {
-    baseUrl : string;
-    currentWeather : string;
-    timezone: string;
+interface OpenMetro {
+  baseUrl: string;
+  currentWeather: string;
+  timezone: string;
+}
+
+interface AxiosData {
+  retries: number;
 }

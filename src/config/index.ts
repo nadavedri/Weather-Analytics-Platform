@@ -6,19 +6,16 @@ dotenv.config();
 const envFile = `.env.${process.env.APP_ENV || 'development'}`;
 dotenv.config({ path: envFile });
 
-const config :AppConfig  = {
-    environment: process.env.NODE_ENV || 'development',
-    openMetro:{
-        baseUrl: process.env.OPEN_METEO_BASE_URL as string,
-        currentWeather : process.env.OPEN_METEO_CURRENT_WEATHER as string || 'true',
-        timezone :process.env.OPEN_METEO_TIMEZONE as string || 'auto',
-
-    }
-    
-  };
+const config: AppConfig = {
+  environment: process.env.NODE_ENV || 'development',
+  openMetro: {
+    baseUrl: process.env.OPEN_METEO_BASE_URL as string,
+    currentWeather: (process.env.OPEN_METEO_CURRENT_WEATHER as string) || 'true',
+    timezone: (process.env.OPEN_METEO_TIMEZONE as string) || 'auto',
+  },
+  axiosData: {
+    retries: Number(process.env.AXIOS_RETRIES),
+  },
+};
 
 export default config;
-
-
-
-
