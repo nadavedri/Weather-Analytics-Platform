@@ -21,6 +21,7 @@
   "homepage": "https://github.com/nadavedri/Weather-Analytics-Platform#readme",
   "devDependencies": {
     "@types/node": "^22.14.1",
+    "prettier": "^3.5.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3"
   }
