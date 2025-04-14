@@ -124,10 +124,8 @@ Below is a high-level system design:
 
 ## Logging
 
-Logs are stored in `logs/`:
+Logs are stored in `logs/` in production and write to console in development.
 
-- `error.log`: Errors.
-- `combined.log`: All events.
 
 ## Acknowledgments
 
