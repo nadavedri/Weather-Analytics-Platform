@@ -5,7 +5,7 @@ import logger from '../logger';
 export const getClient = async () => {
   const client = new Client({
     host: config.postgreSQL.host || 'localhost',
-    port: 5432,
+    port: Number(config.postgreSQL.host) || 5432,
     database: config.postgreSQL.dbName,
     user: config.postgreSQL.userName,
     password: config.postgreSQL.password,
