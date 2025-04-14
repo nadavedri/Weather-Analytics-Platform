@@ -2,6 +2,7 @@ export interface AppConfig {
   environment: string;
   openMetro: OpenMetro;
   axiosData: AxiosData;
+  postgreSQL: PostgreSQL;
 }
 
 interface OpenMetro {
@@ -12,4 +13,11 @@ interface OpenMetro {
 
 interface AxiosData {
   retries: number;
+}
+
+interface PostgreSQL {
+  userName: string;
+  password: string;
+  dbName: string;
+  host: string;
 }
