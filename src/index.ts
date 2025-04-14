@@ -8,6 +8,8 @@ import logger from './logger';
 import pLimit from 'p-limit';
 import { checkForWeatherAlerts } from './alerts/alertLogic';
 import { storeAlertInDB } from './db/storeAlert';
+import './api/server';
+
 const limit = pLimit(2);
 
 executeSchema()
