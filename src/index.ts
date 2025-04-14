@@ -6,6 +6,8 @@ import cron from 'node-cron';
 import { executeSchema } from './db/runSchema';
 import logger from './logger';
 import pLimit from 'p-limit';
+import { checkForWeatherAlerts } from './alerts/alertLogic';
+import { storeAlertInDB } from './db/storeAlert';
 const limit = pLimit(2);
 
 executeSchema()
@@ -30,6 +32,11 @@ const etl = async () => {
           const transformedData = transformData(rawWeatherData);
           await loadWeatherData(transformedData);
 
+          const alert = checkForWeatherAlerts(transformedData);
+          if (alert) {
+            logger.info(`Alert triggered for ${city.name}: ${alert.condition} (${alert.value})`);
+            await storeAlertInDB(city.name, alert);
+          }
           logger.info(`Weather data for ${city.name} processed successfully.`);
         } catch (error) {
           logger.error(`Error processing data for ${city.name}:`, error);
@@ -41,7 +48,6 @@ const etl = async () => {
   logger.info('ETL process completed.');
 };
 
-// Schedule the ETL process to run every hour
 cron.schedule('0 * * * *', () => {
   logger.info('Running ETL process every hour...');
   etl()
@@ -49,5 +55,4 @@ cron.schedule('0 * * * *', () => {
     .catch((err) => logger.error('Error during ETL process:', err));
 });
 
-// Start the process immediately
 etl().catch((err) => logger.error('Error during initial ETL execution:', err));
