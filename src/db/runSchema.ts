@@ -14,6 +14,14 @@ export const executeSchema = async () => {
         wind_direction REAL,
         timestamp TIMESTAMPTZ
       );
+      
+       CREATE TABLE IF NOT EXISTS alerts (
+        id SERIAL PRIMARY KEY,
+        city VARCHAR(100),
+        condition VARCHAR(100),
+        value REAL,
+        timestamp TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+      );
     `;
 
     logger.info('Executing schema...');

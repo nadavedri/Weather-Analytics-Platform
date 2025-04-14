@@ -30,6 +30,11 @@ const config: AppConfig = {
     dbName: getEnv('POSTGRES_DB'),
     host: process.env.POSTGRES_HOST || 'localhost',
   },
+  alerts: {
+    listOfImportentCities: ['Tel Aviv', 'New York', 'London'],
+    notificationTemperature: 35,
+    notificationWindSpeed: 50,
+  },
 };
 
 export default config;
