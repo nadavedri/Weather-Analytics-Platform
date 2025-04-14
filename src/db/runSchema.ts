@@ -1,4 +1,5 @@
 import { getClient } from './client';
+import logger from '../logger';
 
 export const executeSchema = async () => {
   const client = await getClient(); // Get a connected client
@@ -15,14 +16,14 @@ export const executeSchema = async () => {
       );
     `;
 
-    console.log('Executing schema...');
+    logger.info('Executing schema...');
     await client.query(schema);
-    console.log('Schema executed successfully.');
+    logger.info('Schema executed successfully.');
   } catch (error) {
-    console.error('Error executing schema:', error);
+    logger.error('Error executing schema:', error);
     throw error;
   } finally {
     await client.end();
-    console.log('Client connection closed.');
+    logger.info('Client connection closed.');
   }
 };

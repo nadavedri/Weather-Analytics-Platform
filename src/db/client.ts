@@ -1,5 +1,6 @@
 import { Client } from 'pg';
 import config from '../config/index';
+import logger from '../logger';
 
 export const getClient = async () => {
   const client = new Client({
@@ -14,7 +15,7 @@ export const getClient = async () => {
     await client.connect();
     return client;
   } catch (err) {
-    console.error('Failed to connect to DB:', err);
+    logger.error('Failed to connect to DB:', err);
     throw err;
   }
 };
