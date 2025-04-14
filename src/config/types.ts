@@ -3,6 +3,7 @@ export interface AppConfig {
   openMetro: OpenMetro;
   axiosData: AxiosData;
   postgreSQL: PostgreSQL;
+  alerts: Alerts;
 }
 
 interface OpenMetro {
@@ -20,4 +21,10 @@ interface PostgreSQL {
   password: string;
   dbName: string;
   host: string;
+}
+
+interface Alerts {
+  listOfImportentCities: string[];
+  notificationTemperature: number;
+  notificationWindSpeed: number;
 }
