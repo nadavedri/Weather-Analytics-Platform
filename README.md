@@ -74,30 +74,6 @@ Swagger UI is available at:
    - Cloud: Use external IP from `kubectl get svc`.
    - Minikube: Run `minikube service weather-analytics-platform`.
 
-## System Design
-
-Below is a high-level system design:
-
-+-------------------+       +-------------------+       +-------------------+
-|                   |       |                   |       |                   |
-|   Open-Meteo API  +------>+   ETL Process     +------>+   PostgreSQL DB   |
-|                   |       |                   |       |                   |
-+-------------------+       +-------------------+       +-------------------+
-                                    |
-                                    v
-                          +-------------------+
-                          |                   |
-                          |   RESTful API     |
-                          |                   |
-                          +-------------------+
-                                    |
-                                    v
-                          +-------------------+
-                          |                   |
-                          |   Swagger UI      |
-                          |                   |
-                          +-------------------+
-
 ## Development
 
 - Linting: `npm run lint`
