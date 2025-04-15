@@ -6,6 +6,7 @@ export const executeSchema = async () => {
 
   try {
     const schema = `
+      -- Table to store weather data collected from the ETL process
       CREATE TABLE IF NOT EXISTS weather_data (
         id SERIAL PRIMARY KEY,
         city VARCHAR(100),
@@ -15,7 +16,8 @@ export const executeSchema = async () => {
         timestamp TIMESTAMPTZ
       );
       
-       CREATE TABLE IF NOT EXISTS alerts (
+      -- Table to store weather alerts triggered based on conditions
+      CREATE TABLE IF NOT EXISTS alerts (
         id SERIAL PRIMARY KEY,
         city VARCHAR(100),
         condition VARCHAR(100),
