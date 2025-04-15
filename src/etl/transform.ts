@@ -1,6 +1,8 @@
+import logger from '../logger';
 import { RawWeatherData, TransformedWeatherData } from '../types/weatherTypes';
 
 const transformData = (rawWeatherData: RawWeatherData): TransformedWeatherData => {
+  logger.info('Transforming raw weather data...');
   return {
     cityName: rawWeatherData.cityName,
     temperature: rawWeatherData.temperature,
