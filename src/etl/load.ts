@@ -7,7 +7,6 @@ export const loadWeatherData = async (data: TransformedWeatherData) => {
     INSERT INTO weather_data (city, temperature, wind_speed, wind_direction, timestamp)
     VALUES ($1, $2, $3, $4, $5)
   `;
-
   const values = [
     data.cityName,
     data.temperature,
@@ -16,6 +15,7 @@ export const loadWeatherData = async (data: TransformedWeatherData) => {
     data.timestamp,
   ];
 
+  logger.info(`Inserting weather data for ${data.cityName}...`);
   const client = await getClient();
 
   try {
