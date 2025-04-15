@@ -16,15 +16,15 @@ spec:
     spec:
       containers:
         - name: weather-analytics-platform
-          image: your-dockerhub-username/weather-analytics-platform:latest
+          image: nadavedri01/weather-analytics-platform:latest
           ports:
             - containerPort: 3000
           env:
             - name: NODE_ENV
               value: 'production'
-            - name: DB_HOST
+            - name: POSTGRES_HOST
               value: 'your-database-host'
-            - name: DB_USER
+            - name: POSTGRES_USER
               value: 'your-database-user'
-            - name: DB_PASSWORD
+            - name: POSTGRES_PASSWORD
               value: 'your-database-password'
